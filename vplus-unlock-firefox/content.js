@@ -1,7 +1,6 @@
 var postId = (window.location.href.split("/")[4] || "").split("?")[0];
 var enabled = true;
 
-// Answers status requests from the popup
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   if (msg === "status") {
     sendResponse({
@@ -14,7 +13,6 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
 chrome.storage.local.get({ enabled: true }, function (settings) {
   enabled = settings.enabled;
   if (!enabled) return;
-  // styles.css only applies with this class
   document.documentElement.classList.add("vplus-unlock");
   setInterval(function () {
     var contentWrapper =
@@ -32,7 +30,6 @@ function unlockComments() {
   comments.classList.remove("hidden");
   var overlay = comments.querySelector("dialog, [role='dialog']");
   if (!overlay) {
-    // Look for the login overlay by its content
     comments.querySelectorAll("div").forEach(function (el) {
       if (
         el.textContent.includes("eingeloggte") ||
@@ -48,7 +45,6 @@ function unlockComments() {
   } else {
     overlay.remove();
   }
-  // Remove blur/opacity on comment content
   comments
     .querySelectorAll("[style*='blur'], [style*='opacity']")
     .forEach(function (el) {
