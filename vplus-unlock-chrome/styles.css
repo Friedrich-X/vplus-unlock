@@ -1,0 +1,41 @@
+.vplus-unlock .vodl-paywall {
+  display: none !important;
+}
+
+.vplus-unlock .tp-modal {
+  display: none !important;
+}
+
+.vplus-unlock .tp-backdrop.tp-active {
+  display: none !important;
+}
+
+.vplus-unlock body.tp-modal-open {
+  overflow: auto !important;
+}
+
+.vplus-unlock #piano_reco_ab-vplus {
+  min-height: 0 !important;
+}
+
+.vplus-unlock #comments.hidden {
+  display: block !important;
+}
+
+.vplus-unlock #comments {
+  filter: none !important;
+  -webkit-filter: none !important;
+  overflow: visible !important;
+  pointer-events: auto !important;
+}
+
+.vplus-unlock #comments > * {
+  filter: none !important;
+  -webkit-filter: none !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.vplus-unlock .vodl-piano-sticky-note {
+  display: none !important;
+}

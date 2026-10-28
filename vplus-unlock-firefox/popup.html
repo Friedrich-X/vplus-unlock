@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      :root {
+        --bg: #0f0d1a;
+        --card: #1a1729;
+        --line: #2b2740;
+        --text: #f2f0fa;
+        --muted: #8d89a6;
+        --accent: #7c5cff;
+        --green: #46ffc8;
+        --orange: #ffb800;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        width: 320px;
+        padding: 16px;
+        background: var(--bg);
+        color: var(--text);
+        font:
+          14px/1.4 system-ui,
+          -apple-system,
+          sans-serif;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      header img {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+      }
+      h1 {
+        margin: 0;
+        font-size: 18px;
+      }
+      .tagline {
+        color: var(--green);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+      }
+      .site {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 600;
+      }
+      .site-badge {
+        background: var(--orange);
+        color: #1a1238;
+        font-size: 9px;
+        font-weight: 800;
+        padding: 4px 5px;
+        border-radius: 5px;
+      }
+      .toggle-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 16px 14px;
+      }
+      .toggle-card strong {
+        display: block;
+        font-size: 15px;
+      }
+      .toggle-card small {
+        color: var(--muted);
+      }
+      .switch {
+        position: relative;
+        width: 52px;
+        height: 30px;
+        flex: none;
+      }
+      .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      .slider {
+        position: absolute;
+        inset: 0;
+        cursor: pointer;
+        background: var(--line);
+        border-radius: 30px;
+        transition: 0.2s;
+      }
+      .slider::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        top: 4px;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #c9c9d6;
+        transition: 0.2s;
+      }
+      .switch input:checked + .slider {
+        background: var(--accent);
+      }
+      .switch input:checked + .slider::before {
+        transform: translateX(22px);
+        background: #fff;
+      }
+      .switch input:focus-visible + .slider {
+        outline: 2px solid var(--green);
+        outline-offset: 2px;
+      }
+      .status {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--muted);
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--muted);
+      }
+      .status.free {
+        color: var(--text);
+      }
+      .status.free .dot {
+        background: var(--green);
+        box-shadow: 0 0 8px var(--green);
+      }
+      .status.locked {
+        color: var(--text);
+      }
+      .status.locked .dot {
+        background: var(--orange);
+        box-shadow: 0 0 8px var(--orange);
+      }
+      button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 4px;
+        background: var(--card);
+        color: var(--text);
+        border: 1px solid var(--accent);
+        border-radius: 10px;
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #241f3d;
+      }
+      footer {
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 11px;
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="icons/icon128.png" alt="" />
+      <div>
+        <h1>V+ Unlock</h1>
+      </div>
+    </header>
+
+    <div class="card site">
+      <span class="site-badge">VOL</span>
+      <span id="site">...</span>
+    </div>
+
+    <label class="card toggle-card">
+      <span>
+        <strong>Freischalten</strong>
+        <small>V+ Beiträge automatisch öffnen.</small>
+      </span>
+      <span class="switch">
+        <input type="checkbox" id="toggle" />
+        <span class="slider"></span>
+      </span>
+    </label>
+
+    <div class="card status" id="status">
+      <span class="dot"></span>
+      <span id="status-text">Prüfe Seite...</span>
+    </div>
+
+    <button id="reload">Tab neu laden</button>
+
+    <footer id="version"></footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
